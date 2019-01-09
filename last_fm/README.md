@@ -1,16 +1,20 @@
 # last_fm
 
-A new Flutter project.
+The LastFM mobile client with Flutter.
 
-## Getting Started
+## Intro
 
-This project is a starting point for a Flutter application.
+This project is functionally the same as the [LastFM mobile client with React Native](https://github.com/brascene/Last.fm-Client). The only reason for making it is to try out the Flutter and implement the same things (with small modifications).
 
-A few resources to get you started if this is your first Flutter project:
+UI goals: 
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+1. List of countries with search bar (screen_1)
+2. List of top tracks for selected country (screen_2)
+3. Track details screen (screen_3)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Functional goals:
+
+1. Log in to your LastFM profile
+2. Love track functionality
+
+API resource: [LastFM API Documentation](https://www.last.fm/api/intro)
