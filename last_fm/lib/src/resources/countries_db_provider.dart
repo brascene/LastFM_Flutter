@@ -27,9 +27,8 @@ class CountriesDBProvider {
         await newDB.execute("""
           CREATE TABLE Countries
           (
-            id INTEGER PRIMARY KEY,
             name TEXT,
-            nativeName TEXT,
+            nativeName TEXT PRIMARY KEY,
             flag TEXT,
             countryCode TEXT
           )
@@ -73,8 +72,27 @@ class CountriesDBProvider {
   }
 
   Future<int> addCountry(CountryModel flag) {
-    final result = _db.insert("Countries", flag.toMapForDB(), conflictAlgorithm: ConflictAlgorithm.ignore);
+    final result = _db.insert("Countries", flag.toMapForDB(), conflictAlgorithm: ConflictAlgorithm.replace);
     return result;
+  }
+
+  Future<List<CountryModel>> filterCountries(String searchParam) async {
+    final thisDB = await db;
+    final query = 
+    """
+      SELECT *
+      FROM Countries
+      WHERE LIKE('$searchParam%',name)=1;
+    """;
+    final countriesMap = await thisDB.rawQuery(query);
+    List<CountryModel> countries = [];
+        if (countriesMap.length > 0) {
+      for (var countryMap in countriesMap) {
+        final newCountry = CountryModel.fromDB(countryMap);
+        countries.add(newCountry);
+      }
+    }
+    return countries;
   }
 
   Future<int> clearDBCountries() {

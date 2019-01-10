@@ -6,6 +6,12 @@ import '../models/flag.dart';
 class Repository {
   final apiProvider = CountriesApiProvider();
 
+  Future<List<CountryModel>> filterCountries(String by) async {
+    List<CountryModel> countries;
+    countries = await CountriesDBProvider.sharedDB.filterCountries(by);
+    return countries;
+  }
+
   Future<List<CountryModel>> getAllCountries() async {
     List<CountryModel> countries;
     countries = await apiProvider.fetchAllCountries();

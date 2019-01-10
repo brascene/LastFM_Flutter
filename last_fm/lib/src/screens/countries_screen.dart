@@ -15,6 +15,10 @@ class CountriesList extends StatelessWidget {
       );
     }
 
+  void filterSearchResult(String value, CountriesBloc bloc) {
+    bloc.filterCountries(value);
+  }
+
   Widget buildCountryList(CountriesBloc bloc) {
     return StreamBuilder(
       stream: bloc.countries,
@@ -30,9 +34,10 @@ class CountriesList extends StatelessWidget {
           },
         );
 
-        TextEditingController editingController = TextEditingController();
         final searchField = TextField(
-          controller: editingController,
+          onChanged: (String newValue) {
+            filterSearchResult(newValue, bloc);
+          },
           decoration: InputDecoration(
             labelText: "Search country",
             hintText: "Search country",

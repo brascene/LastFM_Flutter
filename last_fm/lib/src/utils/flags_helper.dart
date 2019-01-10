@@ -1,5 +1,3 @@
-
-
 class FlagsHelper {
   final Map<String, String> _photoData = {
   'AD': 'assets/country_flags/ad.png',
