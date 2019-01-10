@@ -30,7 +30,34 @@ class CountriesList extends StatelessWidget {
           },
         );
 
-        return countriesList;
+        TextEditingController editingController = TextEditingController();
+        final searchField = TextField(
+          controller: editingController,
+          decoration: InputDecoration(
+            labelText: "Search country",
+            hintText: "Search country",
+            prefixIcon: Icon(Icons.search),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))
+            )
+          ),
+        );
+
+        var content = Column(
+          children: <Widget>[
+            Padding(
+              child: searchField,
+              padding: EdgeInsets.all(10.0),
+            ),
+            Expanded(
+              child: countriesList,
+            )
+          ],
+        );
+
+        return Container(
+          child: content,
+        );
       },
     );
   }
